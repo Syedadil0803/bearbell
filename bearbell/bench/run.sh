@@ -9,6 +9,7 @@
 set -euo pipefail
 name=$1 dir=$2 truth=$3 runs=${4:-3}
 here=$(cd "$(dirname "$0")" && pwd)
+skill=$here/..; [ -f "$skill/scripts/runner.py" ] || skill=$HOME/.claude/skills/bearbell  # repo layout, else the installed skill
 out=${5:-$here/results/$name}
 mkdir -p "$out"; out=$(cd "$out" && pwd)
 sha=$(git -C "$dir" rev-parse --short HEAD)
@@ -36,10 +37,13 @@ json.dump({'tool': sys.argv[3].rsplit('-', 1)[0], 'tokens': tokens, 'cost_usd': 
            'findings': found}, open(sys.argv[2], 'w'), indent=1)
 print(sys.argv[3], len(found), 'findings', tokens, 'tokens')
 PY
+  # bearbell runs: did every step pass the runner's checks? (a skipped step shows here, not as a low score)
+  [ -d "$out/$1-work" ] && { python3 "$skill/scripts/runner.py" status "$out/$1-work" > "$out/$1.runner.txt" || echo "$1: runner NOT complete"; }
+  return 0
 }
 
-scope=""; [ -z "${BENCH_FILES:-}" ] || scope="Quick run: review only these files and the routes, resolvers and gRPC methods in them, nothing else: ${BENCH_FILES}. "
-brief() { echo "${scope}Do not set timers or wake-ups. Write every confirmed, stands and unconfirmed finding to $out/$1.findings.json as {\"findings\": [{\"file\", \"line\", \"cwe\", \"status\"}]}, plus one entry per also_from entry point at its own file:line with \"of\": \"<the sink finding's file:line>\", and also print it at the end as one \`\`\`json block. Do not edit, commit or push anything except proof tests."; }
+scope=""; [ -z "${BENCH_FILES:-}" ] || scope="Quick run: review only these files and the routes, resolvers and gRPC methods in them, nothing else: ${BENCH_FILES}. Start the runner with --files ${BENCH_FILES}. "
+brief() { echo "${scope}Use $out/$1-work as OUT. Do not set timers or wake-ups. Write every confirmed, stands and unconfirmed finding to $out/$1.findings.json as {\"findings\": [{\"file\", \"line\", \"cwe\", \"status\"}]}, plus one entry per also_from entry point at its own file:line with \"of\": \"<the sink finding's file:line>\", and also print it at the end as one \`\`\`json block. Do not edit, commit or push anything except proof tests."; }
 for i in $(seq 1 "$runs"); do
   ask "bearbell-full-$i" "/bearbell-full Run without waiting for the owner: treat every access-matrix row as confirmed from the code and the app's README. $(brief bearbell-full-$i)"
   [ -n "${BENCH_ONLY:-}" ] || ask "security-review-$i" "/security-review Review the whole repository, not only pending changes. $(brief security-review-$i)"

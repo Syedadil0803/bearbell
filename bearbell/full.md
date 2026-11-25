@@ -3,6 +3,15 @@
 Goal: a senior-style review of every entry point, against written access rules.
 `X` is this skill's folder; `OUT` is a scratch folder outside the repo.
 
+**The runner decides the order, not you.** Write the threat model (step 1), then run, on its own line:
+`python3 X/scripts/runner.py start <repo> OUT` (add `--files a,b` for a scoped run).
+Do exactly the step it prints, then `python3 X/scripts/runner.py next OUT`. If it says a step is not done,
+finish what it lists and ask again. Never skip a step, never write the report before the runner reaches
+Report, and end only when it prints `run complete`. The steps below are the detail it points to.
+Keep the context small: every turn re-reads it. Read the README only by its headings (`grep -n '^#' README.md`)
+and the sections you need; never re-read `ledger.md`, `suspects.md` or the tracer replies whole: the runner and
+the `--check` scripts tell you what is left, so read only the rows they list.
+
 1. **Threat model in five lines.** From the README, CLAUDE.md, docs and the inventory: who the users
    and roles are, what the valuable data is, every way in (HTTP, webhooks, mail or chat intake,
    jobs, admin tools, mobile app, AI features), and where trust changes (public → signed in → role → owner of the object).
@@ -32,8 +41,8 @@ Goal: a senior-style review of every entry point, against written access rules.
    auth itself (login, codes, tokens, sessions, logout), and one for the mobile or web client (token
    storage, hidden-button-only checks, deep links). Order: public and write routes first, then
    routes with `object-id`, then the rest.
-6. **Trace, disprove, prove.** Follow `trace.md` for every feature, with two tracer runs per feature
-   (their union goes to disprove: runs vary, two catch more).
+6. **Trace, disprove, prove.** Follow `trace.md` for every feature, one tracer per feature: the required
+   q1..q8 answers and suspect verdicts give the coverage a second run used to add.
 7. **Ledger gate.** `python3 X/scripts/inventory.py --check OUT/ledger.md` must print `ledger complete`.
    Anything it lists: trace it, or write `skip: <why>` in its row. Only then write the report.
 8. **Report.** Follow `report.md`. Every route from the inventory appears in the coverage table.
