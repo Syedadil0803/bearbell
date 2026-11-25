@@ -1,0 +1,917 @@
+{
+ "target": "brokencrystals",
+ "ref": "1765acfddec1437f4f37c51469eba1b7d9a33ed5",
+ "scope": "src",
+ "vulns": [
+  {
+   "id": "BC1",
+   "file": "src/auth/jwt/jwt.token.with.rsa.keys.processor.ts",
+   "line": 17,
+   "cwe": "CWE-347",
+   "title": "JWT 'none' algorithm accepted, signature skipped",
+   "source": "README.md: Vulnerabilities Overview - Broken JWT / No Algorithm bypass"
+  },
+  {
+   "id": "BC2",
+   "file": "src/auth/jwt/jwt.token.with.rsa.keys.processor.ts",
+   "line": 20,
+   "cwe": "CWE-347",
+   "title": "JWT verified with header-supplied alg using RSA public key (RSA to HMAC confusion)",
+   "source": "README.md: Vulnerabilities Overview - Broken JWT / RSA to HMAC",
+   "cwe_alt": [
+    "CWE-327"
+   ]
+  },
+  {
+   "id": "BC3",
+   "file": "src/auth/jwt/jwt.token.with.rsa.signature.keys.processor.ts",
+   "line": 16,
+   "cwe": "CWE-347",
+   "title": "jwt-simple decode called with noVerify=true, signature not checked",
+   "source": "README.md: Vulnerabilities Overview - Broken JWT / Invalid Signature"
+  },
+  {
+   "id": "BC4",
+   "file": "src/auth/jwt/jwt.token.with.sql.kid.processor.ts",
+   "line": 10,
+   "cwe": "CWE-89",
+   "title": "JWT kid header interpolated into SQL key-lookup query",
+   "source": "README.md: Vulnerabilities Overview - Broken JWT / KID Manipulation (SQL variant)",
+   "also_lines": [
+    31
+   ]
+  },
+  {
+   "id": "BC5",
+   "file": "src/auth/jwt/jwt.token.with.weak.key.processor.ts",
+   "line": 12,
+   "cwe": "CWE-326",
+   "title": "JWT verified with weak configurable secret (default 123)",
+   "source": "README.md: Vulnerabilities Overview - Broken JWT / Brute Forcing Weak Secret Key",
+   "cwe_alt": [
+    "CWE-1391",
+    "CWE-798"
+   ]
+  },
+  {
+   "id": "BC6",
+   "file": "src/auth/jwt/jwt.token.with.x5u.key.processor.ts",
+   "line": 20,
+   "cwe": "CWE-347",
+   "title": "JWT key loaded from attacker-controlled x5u URL",
+   "source": "README.md: Vulnerabilities Overview - Broken JWT / X5U Rogue Key"
+  },
+  {
+   "id": "BC7",
+   "file": "src/auth/jwt/jwt.token.with.x5c.key.processor.ts",
+   "line": 15,
+   "cwe": "CWE-347",
+   "title": "JWT verified with key taken from attacker-supplied x5c header",
+   "source": "README.md: Vulnerabilities Overview - Broken JWT / X5C Rogue Key"
+  },
+  {
+   "id": "BC8",
+   "file": "src/auth/jwt/jwt.token.with.jku.processor.ts",
+   "line": 21,
+   "cwe": "CWE-347",
+   "title": "JWT key set loaded from attacker-controlled jku URL",
+   "source": "README.md: Vulnerabilities Overview - Broken JWT / JKU Rogue Key"
+  },
+  {
+   "id": "BC9",
+   "file": "src/auth/jwt/jwt.token.with.jwk.processor.ts",
+   "line": 22,
+   "cwe": "CWE-347",
+   "title": "JWT with empty jwk (no kty) returns payload unverified; embedded jwk trusted",
+   "source": "README.md: Vulnerabilities Overview - Broken JWT / JWK Rogue Key"
+  },
+  {
+   "id": "BC10",
+   "file": "src/auth/auth.controller.ts",
+   "line": 703,
+   "cwe": "CWE-307",
+   "title": "Login has no rate limit or lockout (admin/admin default)",
+   "source": "README.md: Vulnerabilities Overview - Brute Force Login",
+   "also_lines": [
+    124
+   ]
+  },
+  {
+   "id": "BC11",
+   "file": "src/main.ts",
+   "line": 195,
+   "cwe": "CWE-614",
+   "title": "Session cookie secure:false",
+   "source": "README.md: Vulnerabilities Overview - Cookie Security"
+  },
+  {
+   "id": "BC12",
+   "file": "src/main.ts",
+   "line": 196,
+   "cwe": "CWE-1004",
+   "title": "Session cookie httpOnly:false",
+   "source": "README.md: Vulnerabilities Overview - Cookie Security"
+  },
+  {
+   "id": "BC13",
+   "file": "src/components/headers.configurator.interceptor.ts",
+   "line": 56,
+   "cwe": "CWE-614",
+   "title": "bc-calls-counter cookie set without secure/HttpOnly",
+   "source": "README.md: Vulnerabilities Overview - Cookie Security"
+  },
+  {
+   "id": "BC14",
+   "file": "src/auth/csrf.guard.ts",
+   "line": 25,
+   "cwe": "CWE-352",
+   "title": "CSRF token only enforced for specific op modes, otherwise skipped",
+   "source": "README.md: Vulnerabilities Overview - Cross-Site Request Forgery (CSRF)"
+  },
+  {
+   "id": "BC15",
+   "file": "src/testimonials/testimonials.controller.ts",
+   "line": 95,
+   "cwe": "CWE-79",
+   "title": "count endpoint returns user-controlled query/error as text/html",
+   "source": "README.md: Vulnerabilities Overview - Cross-Site Scripting / Reflective XSS (/api/testimonials/count)",
+   "also_at": [
+    "src/testimonials/testimonials.service.ts:64"
+   ]
+  },
+  {
+   "id": "BC16",
+   "file": "src/app.controller.ts",
+   "line": 129,
+   "cwe": "CWE-79",
+   "title": "metadata endpoint returns parsed user XML/SVG as text/xml",
+   "source": "README.md: Vulnerabilities Overview - Cross-Site Scripting / Reflective XSS (POST /api/metadata)"
+  },
+  {
+   "id": "BC17",
+   "file": "src/testimonials/testimonials.service.ts",
+   "line": 47,
+   "cwe": "CWE-79",
+   "title": "Testimonial message stored unsanitized (persistent XSS / HTML injection)",
+   "source": "README.md: Vulnerabilities Overview - Persistent XSS; HTML Injection"
+  },
+  {
+   "id": "BC18",
+   "file": "src/subscriptions/subscriptions.controller.ts",
+   "line": 29,
+   "cwe": "CWE-79",
+   "title": "Subscription endpoint echoes email query param unsanitized",
+   "source": "README.md: Vulnerabilities Overview - DOM Cross-Site Scripting"
+  },
+  {
+   "id": "BC19",
+   "file": "src/users/users.controller.ts",
+   "line": 603,
+   "cwe": "CWE-434",
+   "title": "Avatar upload accepts any file with no type/content validation or AV scan",
+   "source": "README.md: Vulnerabilities Overview - File Upload; No Anti-Virus Protection",
+   "also_lines": [
+    619
+   ]
+  },
+  {
+   "id": "BC20",
+   "file": "src/products/products.controller.ts",
+   "line": 173,
+   "cwe": "CWE-209",
+   "title": "Error response includes location: __filename (full server path)",
+   "source": "README.md: Vulnerabilities Overview - Full Path Disclosure"
+  },
+  {
+   "id": "BC21",
+   "file": "src/components/headers.configurator.interceptor.ts",
+   "line": 60,
+   "cwe": "CWE-693",
+   "title": "no-sec-headers query param disables security headers",
+   "source": "README.md: Vulnerabilities Overview - Headers Security Check"
+  },
+  {
+   "id": "BC22",
+   "file": "src/components/headers.configurator.interceptor.ts",
+   "line": 70,
+   "cwe": "CWE-693",
+   "title": "Permissive CSP (unsafe-inline, unsafe-eval, *) and weak security headers",
+   "source": "README.md: Vulnerabilities Overview - Headers Security Check"
+  },
+  {
+   "id": "BC23",
+   "file": "src/file/file.controller.ts",
+   "line": 291,
+   "cwe": "CWE-434",
+   "title": "PUT /api/file/raw writes attacker body to attacker-chosen path",
+   "source": "README.md: Vulnerabilities Overview - HTTP Method fuzzer (put.raw)",
+   "cwe_alt": [
+    "CWE-22",
+    "CWE-73"
+   ]
+  },
+  {
+   "id": "BC24",
+   "file": "src/file/file.service.ts",
+   "line": 44,
+   "cwe": "CWE-22",
+   "title": "deleteFile unlinks attacker-supplied relative path",
+   "source": "README.md: Vulnerabilities Overview - HTTP Method fuzzer (delete via /api/file)"
+  },
+  {
+   "id": "BC25",
+   "file": "src/users/users.controller.ts",
+   "line": 300,
+   "cwe": "CWE-90",
+   "title": "User-supplied LDAP query parsed and used for lookup",
+   "source": "README.md: Vulnerabilities Overview - LDAP Injection"
+  },
+  {
+   "id": "BC26",
+   "file": "src/file/file.service.ts",
+   "line": 19,
+   "cwe": "CWE-22",
+   "title": "getFile reads any absolute/relative path from user input",
+   "source": "README.md: Vulnerabilities Overview - Local File Inclusion (LFI)",
+   "also_lines": [
+    33
+   ]
+  },
+  {
+   "id": "BC27",
+   "file": "src/file/file.controller.ts",
+   "line": 332,
+   "cwe": "CWE-22",
+   "title": "gRPC FileService/ReadFile reads arbitrary path",
+   "source": "README.md: Vulnerabilities Overview - Local File Inclusion (gRPC FileService/ReadFile)"
+  },
+  {
+   "id": "BC28",
+   "file": "src/users/users.service.ts",
+   "line": 39,
+   "cwe": "CWE-915",
+   "title": "createUser takes isAdmin from request body",
+   "source": "README.md: Vulnerabilities Overview - Mass Assignment"
+  },
+  {
+   "id": "BC29",
+   "file": "src/users/users.service.ts",
+   "line": 80,
+   "cwe": "CWE-915",
+   "title": "updateUserInfo assigns whole request body (isAdmin etc.) onto entity",
+   "source": "README.md: Vulnerabilities Overview - Mass Assignment (PUT /api/users/one/{email}/info)"
+  },
+  {
+   "id": "BC30",
+   "file": "src/users/users.service.ts",
+   "line": 103,
+   "cwe": "CWE-915",
+   "title": "updateUserAll assigns whole body incl. password/isAdmin for /api/users/me",
+   "source": "README.md: Vulnerabilities Overview - Broken Object Property Level Authorization (BOPLA)"
+  },
+  {
+   "id": "BC31",
+   "file": "src/app.service.ts",
+   "line": 69,
+   "cwe": "CWE-200",
+   "title": "getConfig returns DB connection string with credentials",
+   "source": "README.md: Vulnerabilities Overview - Open Database"
+  },
+  {
+   "id": "BC32",
+   "file": "src/app.service.ts",
+   "line": 25,
+   "cwe": "CWE-78",
+   "title": "spawn of user-supplied command string",
+   "source": "README.md: Vulnerabilities Overview - OS Command Injection (/api/spawn)"
+  },
+  {
+   "id": "BC33",
+   "file": "src/app.controller.ts",
+   "line": 250,
+   "cwe": "CWE-78",
+   "title": "gRPC OsService/RunCommand runs user command",
+   "source": "README.md: Vulnerabilities Overview - OS Command Injection (gRPC OsService/RunCommand)"
+  },
+  {
+   "id": "BC34",
+   "file": "src/app.controller.ts",
+   "line": 274,
+   "cwe": "CWE-798",
+   "title": "/api/secrets returns hard-coded API tokens",
+   "source": "README.md: Vulnerabilities Overview - Secret Tokens",
+   "also_lines": [
+    294
+   ],
+   "cwe_alt": [
+    "CWE-200"
+   ]
+  },
+  {
+   "id": "BC35",
+   "file": "src/app.controller.ts",
+   "line": 79,
+   "cwe": "CWE-1336",
+   "title": "doT.compile on user-supplied template",
+   "source": "README.md: Vulnerabilities Overview - Server-Side Template Injection (SSTI)",
+   "cwe_alt": [
+    "CWE-94"
+   ]
+  },
+  {
+   "id": "BC36",
+   "file": "src/file/cloud.providers.metadata.ts",
+   "line": 264,
+   "cwe": "CWE-918",
+   "title": "axios request to arbitrary user-supplied URL",
+   "source": "README.md: Vulnerabilities Overview - Server-Side Request Forgery (SSRF)"
+  },
+  {
+   "id": "BC37",
+   "file": "src/testimonials/testimonials.service.ts",
+   "line": 61,
+   "cwe": "CWE-89",
+   "title": "User query string executed as raw SQL",
+   "source": "README.md: Vulnerabilities Overview - SQL injection (/api/testimonials/count)"
+  },
+  {
+   "id": "BC38",
+   "file": "src/products/products.controller.ts",
+   "line": 168,
+   "cwe": "CWE-89",
+   "title": "x-product-name header concatenated into UPDATE query",
+   "source": "README.md: Vulnerabilities Overview - SQL injection (/api/products/views)",
+   "also_at": [
+    "src/products/products.service.ts:77"
+   ]
+  },
+  {
+   "id": "BC39",
+   "file": "src/products/products.controller.ts",
+   "line": 182,
+   "cwe": "CWE-89",
+   "title": "gRPC ViewProduct concatenates productName into UPDATE query",
+   "source": "README.md: Vulnerabilities Overview - SQL injection (/api/products/views, gRPC variant)"
+  },
+  {
+   "id": "BC40",
+   "file": "src/products/products.resolver.ts",
+   "line": 42,
+   "cwe": "CWE-89",
+   "title": "GraphQL viewProduct concatenates productName into UPDATE query",
+   "source": "README.md: Vulnerabilities Overview - SQL injection (/api/products/views, GraphQL variant)"
+  },
+  {
+   "id": "BC41",
+   "file": "src/products/products.service.ts",
+   "line": 59,
+   "cwe": "CWE-89",
+   "title": "name interpolated into ilike query",
+   "source": "README.md: Vulnerabilities Overview - SQL Injection (Products Search)"
+  },
+  {
+   "id": "BC42",
+   "file": "src/app.controller.ts",
+   "line": 95,
+   "cwe": "CWE-601",
+   "title": "Redirect to user-supplied url",
+   "source": "README.md: Vulnerabilities Overview - Unvalidated Redirect (/api/goto)"
+  },
+  {
+   "id": "BC43",
+   "file": "src/main.ts",
+   "line": 139,
+   "cwe": "CWE-538",
+   "title": "Client VCS directories (.git/.svn/.hg) served publicly",
+   "source": "README.md: Vulnerabilities Overview - Version Control System",
+   "cwe_alt": [
+    "CWE-548",
+    "CWE-527"
+   ]
+  },
+  {
+   "id": "BC44",
+   "file": "src/main.ts",
+   "line": 136,
+   "cwe": "CWE-538",
+   "title": "Static serving with serveDotFiles:true exposes dotfiles/common files",
+   "source": "README.md: Vulnerabilities Overview - Common Files"
+  },
+  {
+   "id": "BC45",
+   "file": "src/main.ts",
+   "line": 162,
+   "cwe": "CWE-548",
+   "title": "Directory listing enabled on /vendor",
+   "source": "README.md: Vulnerabilities Overview - Directory Listing"
+  },
+  {
+   "id": "BC46",
+   "file": "src/app.controller.ts",
+   "line": 121,
+   "cwe": "CWE-611",
+   "title": "libxmljs parseXml with noent:true",
+   "source": "README.md: Vulnerabilities Overview - XML External Entity (XXE) (/api/metadata)"
+  },
+  {
+   "id": "BC47",
+   "file": "src/users/users.controller.ts",
+   "line": 609,
+   "cwe": "CWE-611",
+   "title": "SVG upload parsed with noent:true",
+   "source": "README.md: Vulnerabilities Overview - XXE (PUT /api/users/one/{email}/photo)"
+  },
+  {
+   "id": "BC48",
+   "file": "src/safe-files/safe-files.service.ts",
+   "line": 19,
+   "cwe": "CWE-918",
+   "title": "Fetches user-provided URL; no host allowlist exists in code",
+   "source": "README.md: Vulnerabilities Overview - Remote File Inclusion (Safe Files)"
+  },
+  {
+   "id": "BC49",
+   "file": "src/users/users.controller.ts",
+   "line": 267,
+   "cwe": "CWE-285",
+   "title": "isAdmin taken from query param to authorize photo deletion",
+   "source": "README.md: Vulnerabilities Overview - Broken Function Level Authorization",
+   "also_lines": [
+    278
+   ]
+  },
+  {
+   "id": "BC50",
+   "file": "src/users/users.controller.ts",
+   "line": 141,
+   "cwe": "CWE-639",
+   "title": "/api/users/id/:id unauthenticated lookup by sequential id",
+   "source": "README.md: Vulnerabilities Overview - ID Enumeration"
+  },
+  {
+   "id": "BC51",
+   "file": "src/users/users.controller.ts",
+   "line": 181,
+   "cwe": "CWE-200",
+   "title": "users/search returns FULL_USER_INFO (cardNumber, phone) with no auth",
+   "source": "README.md: Vulnerabilities Overview - Excessive Data Exposure"
+  },
+  {
+   "id": "BC52",
+   "file": "src/products/products.controller.ts",
+   "line": 116,
+   "cwe": "CWE-840",
+   "title": "limit on /api/products/latest unbounded, bypasses protected /api/products",
+   "source": "README.md: Vulnerabilities Overview - Business Constraint Bypass",
+   "cwe_alt": [
+    "CWE-770"
+   ]
+  },
+  {
+   "id": "BC53",
+   "file": "src/partners/partners.controller.ts",
+   "line": 49,
+   "cwe": "CWE-643",
+   "title": "raw xpath query param evaluated",
+   "source": "README.md: Vulnerabilities Overview - XPATH Injection (/api/partners/query)",
+   "also_at": [
+    "src/partners/partners.service.ts:66"
+   ]
+  },
+  {
+   "id": "BC54",
+   "file": "src/partners/partners.controller.ts",
+   "line": 88,
+   "cwe": "CWE-643",
+   "title": "username/password concatenated into XPath",
+   "source": "README.md: Vulnerabilities Overview - XPATH Injection (partnerLogin)"
+  },
+  {
+   "id": "BC55",
+   "file": "src/partners/partners.controller.ts",
+   "line": 131,
+   "cwe": "CWE-643",
+   "title": "keyword concatenated into XPath",
+   "source": "README.md: Vulnerabilities Overview - XPATH Injection (searchPartners)"
+  },
+  {
+   "id": "BC56",
+   "file": "src/utils/url.ts",
+   "line": 56,
+   "cwe": "CWE-1321",
+   "title": "Query parser assigns nested keys (__proto__) without guard",
+   "source": "README.md: Vulnerabilities Overview - Prototype Pollution (server, /api/email/sendSupportEmail)"
+  },
+  {
+   "id": "BC57",
+   "file": "src/products/products.service.ts",
+   "line": 33,
+   "cwe": "CWE-400",
+   "title": "No limit on date range; long range triggers slow query",
+   "source": "README.md: Vulnerabilities Overview - Date Manipulation"
+  },
+  {
+   "id": "BC58",
+   "file": "src/email/email.service.ts",
+   "line": 60,
+   "cwe": "CWE-93",
+   "title": "Recipient CRLF/%0A parsed into Cc/Bcc/From/Subject headers",
+   "source": "README.md: Vulnerabilities Overview - Email Injection",
+   "also_lines": [
+    70,
+    83,
+    97,
+    105
+   ]
+  },
+  {
+   "id": "BC59",
+   "file": "src/app.controller.ts",
+   "line": 219,
+   "cwe": "CWE-95",
+   "title": "eval of user processing_expression",
+   "source": "README.md: Vulnerabilities Overview - MCP Vulnerabilities / Server-Side JavaScript Injection (/api/process_numbers)"
+  },
+  {
+   "id": "BC60",
+   "file": "src/mcp/mcp.tool-executor.service.ts",
+   "line": 272,
+   "cwe": "CWE-78",
+   "title": "spawn_process runs user command",
+   "source": "README.md: Vulnerabilities Overview - MCP / OS Command Injection via spawn_process"
+  },
+  {
+   "id": "BC61",
+   "file": "src/mcp/mcp.tool-executor.service.ts",
+   "line": 184,
+   "cwe": "CWE-1336",
+   "title": "render tool compiles user doT template",
+   "source": "README.md: Vulnerabilities Overview - MCP / SSTI via render",
+   "cwe_alt": [
+    "CWE-94"
+   ]
+  },
+  {
+   "id": "BC62",
+   "file": "src/mcp/mcp.resource-executor.service.ts",
+   "line": 63,
+   "cwe": "CWE-22",
+   "title": "file:// resource path forwarded to /api/file/raw",
+   "source": "README.md: Vulnerabilities Overview - MCP / LFI via resources/read",
+   "also_lines": [
+    51,
+    52
+   ]
+  },
+  {
+   "id": "BC63",
+   "file": "src/mcp/mcp.resource-executor.service.ts",
+   "line": 101,
+   "cwe": "CWE-918",
+   "title": "http(s) resource fetched from arbitrary user URI",
+   "source": "README.md: Vulnerabilities Overview - MCP / Remote Content Relay via resources/read"
+  },
+  {
+   "id": "BC64",
+   "file": "src/mcp/mcp.tool-executor.service.ts",
+   "line": 474,
+   "cwe": "CWE-1321",
+   "title": "update_user returns attacker __proto__ fields",
+   "source": "README.md: Vulnerabilities Overview - MCP / Prototype Pollution via update_user"
+  },
+  {
+   "id": "BC65",
+   "file": "src/mcp/mcp.session.service.ts",
+   "line": 239,
+   "cwe": "CWE-330",
+   "title": "Predictable sequential MCP session ids (one of several weak algorithms)",
+   "source": "README.md: Vulnerabilities Overview - MCP / Predictable Session ID"
+  },
+  {
+   "id": "BC66",
+   "file": "src/mcp/mcp.session.service.ts",
+   "line": 132,
+   "cwe": "CWE-613",
+   "title": "Session stays valid 5 min after DELETE",
+   "source": "README.md: Vulnerabilities Overview - MCP / Lack of Session ID Invalidation",
+   "also_lines": [
+    38
+   ]
+  },
+  {
+   "id": "BC67",
+   "file": "src/mcp/mcp.controller.ts",
+   "line": 564,
+   "cwe": "CWE-287",
+   "title": "Session id alone accepted, original auth not re-verified",
+   "source": "README.md: Vulnerabilities Overview - MCP / MCP Session ID as Authentication",
+   "cwe_alt": [
+    "CWE-294"
+   ]
+  }
+ ],
+ "traps": [
+  {
+   "file": "src/testimonials/testimonials.service.ts",
+   "line": 33,
+   "note": "Raw SQL via connection.execute but the statement is a constant string with no user input"
+  },
+  {
+   "file": "src/testimonials/testimonials.service.ts",
+   "line": 41,
+   "note": "Raw delete query uses ? placeholder with bound ids from DB rows"
+  },
+  {
+   "file": "src/mcp/mcp.tool-executor.service.ts",
+   "line": 135,
+   "note": "axios.get to this.endpoint('/api/config'), fixed internal URL built from constant base, no user-controlled URL"
+  },
+  {
+   "file": "src/users/users.controller.ts",
+   "line": 484,
+   "note": "GET /one/:email/info looks like IDOR but AuthGuard plus originEmail(req) !== email check returns 403 for other users"
+  },
+  {
+   "file": "src/file/hidden-upload.controller.ts",
+   "line": 51,
+   "note": "Upload path built from randomUUID + whitelisted extension, so user filename cannot traverse paths"
+  }
+ ],
+ "not_located": [
+  {
+   "doc_text": "CORS misconfigured: 'application returns Access-Control-Allow-Origin: * for all requests, configurable in /main.ts' (README: Cross-Site Request Forgery)",
+   "reason": "no CORS config in src (no enableCors or ACAO header); likely nginx in client"
+  },
+  {
+   "doc_text": "KID Manipulation variants (1) static file and (2) OS command echo (README: Broken JWT)",
+   "reason": "only SQL kid variant exists in src"
+  },
+  {
+   "doc_text": "Default Login Location: login endpoint at /api/auth/login (README)",
+   "reason": "design note, no code flaw"
+  },
+  {
+   "doc_text": "JavaScript Vulnerabilities Scanning: old JS libs in index.html (README)",
+   "reason": "client static HTML, not src"
+  },
+  {
+   "doc_text": "Text Relay via excerpt_text, and proxied MCP tools get_count/get_config/process_numbers/get_metadata/search_users (README MCP)",
+   "reason": "proxies to endpoints already listed, not distinct sinks"
+  }
+ ],
+ "out_of_scope": [
+  {
+   "id": "BC68",
+   "file": "client/src/pages/main/Footer.tsx",
+   "line": 175,
+   "cwe": "CWE-79",
+   "title": "Landing page location.search injected as HTML",
+   "source": "README.md: Vulnerabilities Overview - Reflective XSS (dummy param)",
+   "side": "client"
+  },
+  {
+   "id": "BC69",
+   "file": "client/src/pages/main/Footer.tsx",
+   "line": 155,
+   "cwe": "CWE-79",
+   "title": "Subscription response injected as HTML",
+   "source": "README.md: Vulnerabilities Overview - DOM Cross-Site Scripting",
+   "side": "client"
+  },
+  {
+   "id": "BC70",
+   "file": "client/src/pages/auth/AuthLayout.tsx",
+   "line": 13,
+   "cwe": "CWE-79",
+   "title": "logobgcolor URL param written into cssText",
+   "source": "README.md: Vulnerabilities Overview - CSS Injection",
+   "side": "client"
+  },
+  {
+   "id": "BC71",
+   "file": "client/src/pages/main/Contact.tsx",
+   "line": 9,
+   "cwe": "CWE-79",
+   "title": "maptitle URL param controls iframe title attribute",
+   "source": "README.md: Vulnerabilities Overview - IFrame Injection",
+   "side": "client"
+  },
+  {
+   "id": "BC72",
+   "file": "client/src/pages/marketplace/Marketplace.tsx",
+   "line": 127,
+   "cwe": "CWE-79",
+   "title": "videosrc URL param controls iframe src",
+   "source": "README.md: Vulnerabilities Overview - IFrame Injection",
+   "side": "client"
+  },
+  {
+   "id": "BC73",
+   "file": "client/src/utils/url.js",
+   "line": 52,
+   "cwe": "CWE-1321",
+   "title": "Client query parser prototype pollution",
+   "source": "README.md: Vulnerabilities Overview - Prototype Pollution (client, /marketplace)",
+   "side": "client"
+  },
+  {
+   "id": "BC74",
+   "file": "client/src/pages/chat/ChatWidget.tsx",
+   "line": 7,
+   "cwe": "CWE-79",
+   "title": "LLM response rendered via dangerouslySetInnerHTML",
+   "source": "README.md: Vulnerabilities Overview - Insecure Output Handling",
+   "side": "client"
+  },
+  {
+   "id": "BC75",
+   "file": "client/src/pages/hidden/HiddenUpload.tsx",
+   "line": 132,
+   "cwe": "CWE-79",
+   "title": "Uploaded filename rendered as HTML",
+   "source": "README.md: Vulnerabilities Overview - Hidden Upload (File Upload + XSS)",
+   "side": "client"
+  },
+  {
+   "id": "BC76",
+   "file": "client/src/pages/hidden/HiddenUpload.tsx",
+   "line": 172,
+   "cwe": "CWE-79",
+   "title": "Uploaded SVG content rendered as HTML",
+   "source": "README.md: Vulnerabilities Overview - Hidden Upload (File Upload + XSS)",
+   "side": "client"
+  },
+  {
+   "id": "BC77",
+   "file": "client/src/router/AppRoutes.tsx",
+   "line": 84,
+   "cwe": "CWE-862",
+   "title": "/dashboard route reachable regardless of user rights",
+   "source": "README.md: Vulnerabilities Overview - AO1 Vertical access controls",
+   "side": "client"
+  }
+ ],
+ "skip_dirs": [
+  "client"
+ ],
+ "also_real": [
+  {
+   "file": "src/users/users.controller.ts",
+   "line": 170,
+   "note": "GET /fullinfo/:email has no guard and returns FULL_USER_INFO"
+  },
+  {
+   "file": "src/users/users.controller.ts",
+   "line": 220,
+   "note": "GET /one/:email/photo checks login but not ownership"
+  },
+  {
+   "file": "src/users/users.controller.ts",
+   "line": 613,
+   "note": "PUT /one/:email/photo checks login but not ownership"
+  },
+  {
+   "file": "src/auth/jwt/jwt.token.with.hmac.keys.processor.ts",
+   "line": 14,
+   "note": "alg none accepted (README: main login and API auth); truth BC1 has only the RSA spot"
+  },
+  {
+   "file": "src/auth/jwt/jwt.token.with.x5c.key.processor.ts",
+   "line": 27,
+   "note": "createToken puts the private key in the x5c header"
+  },
+  {
+   "file": "src/app.controller.ts",
+   "line": 261,
+   "note": "/api/config returns secrets and DB string (README: Open Database)"
+  },
+  {
+   "file": "src/app.controller.ts",
+   "line": 162,
+   "note": "error returns __filename (README: Full Path Disclosure)"
+  },
+  {
+   "file": "src/app.controller.ts",
+   "line": 318,
+   "note": "/v1/userinfo/:email has no guard"
+  },
+  {
+   "file": "src/app.controller.ts",
+   "line": 349,
+   "note": "/v2/userinfo/:email checks login but not ownership"
+  },
+  {
+   "file": "src/app.controller.ts",
+   "line": 381,
+   "note": "nestedJson depth from the query: CPU/memory DoS"
+  },
+  {
+   "file": "src/app.resolver.ts",
+   "line": 19,
+   "note": "GraphQL getCommandResult runs user command (same sink as BC33, other entry point)"
+  },
+  {
+   "file": "config/keys/jwtRS256.key",
+   "line": 1,
+   "note": "private signing key committed"
+  },
+  {
+   "file": ".env",
+   "line": 9,
+   "note": "API key committed in .env"
+  },
+  {
+   "file": "src/email/email.controller.ts",
+   "line": 121,
+   "note": "GET emails has no auth"
+  },
+  {
+   "file": "src/email/email.controller.ts",
+   "line": 132,
+   "note": "DELETE emails has no auth"
+  },
+  {
+   "file": "src/auth/auth.controller.ts",
+   "line": 241,
+   "note": "returns the Keycloak client secret"
+  },
+  {
+   "file": "src/file/file.controller.ts",
+   "line": 92,
+   "note": "response Content-Type taken from the query: XSS"
+  },
+  {
+   "file": "src/auth/jwt/jwt.token.with.jku.processor.ts",
+   "line": 21,
+   "note": "server fetches the jku URL from the token (SSRF); BC8 is the rogue key on the same line"
+  },
+  {
+   "file": "src/auth/jwt/jwt.token.with.x5u.key.processor.ts",
+   "line": 20,
+   "note": "server fetches the x5u URL from the token (SSRF); BC6 is the rogue key on the same line"
+  },
+  {
+   "file": "src/auth/auth.guard.ts",
+   "line": 40,
+   "note": "401 returns line: __filename (README: Full Path Disclosure)"
+  },
+  {
+   "file": "src/users/users.guard.ts",
+   "line": 11,
+   "note": "AdminGuard checks isAdmin of the email in the URL, not of the caller",
+   "added": "24 Nov from bearbell-full2 alarms, code read"
+  },
+  {
+   "file": "src/components/global-exception.filter.ts",
+   "line": 24,
+   "note": "every unhandled error message returned to the client",
+   "added": "24 Nov from bearbell-full2 alarms, code read"
+  },
+  {
+   "file": "src/email/email.service.ts",
+   "line": 130,
+   "note": "MailCatcher messages fetched for any caller (reaching route has no auth)",
+   "added": "24 Nov from bearbell-full2 alarms, code read"
+  },
+  {
+   "file": "src/email/email.service.ts",
+   "line": 168,
+   "note": "MailCatcher delete-all for any caller (reaching route has no auth)",
+   "added": "24 Nov from bearbell-full2 alarms, code read"
+  },
+  {
+   "file": "src/users/users.controller.ts",
+   "line": 115,
+   "note": "GET user by email: any caller reads any user",
+   "added": "24 Nov from bearbell-full2 alarms, code read"
+  },
+  {
+   "file": "src/partners/partners.controller.ts",
+   "line": 104,
+   "note": "XPath error string thrown to the caller on unauthenticated partnerLogin",
+   "added": "24 Nov from bearbell-full2 alarms, code read"
+  },
+  {
+   "file": "src/products/products.controller.ts",
+   "line": 142,
+   "note": "DB error message returned to the caller",
+   "added": "24 Nov from bearbell-full2 alarms, code read"
+  },
+  {
+   "file": "src/auth/auth.controller.ts",
+   "line": 698,
+   "note": "user enumeration (CWE-204): unknown user gets \"User not found\" 500, wrong password \"Invalid credentials\"",
+   "added": "24 Nov from bearbell-full2 alarms, code read"
+  },
+  {
+   "file": "src/file/file.service.ts",
+   "line": 21,
+   "note": "http paths go to cloudProviders.get: the in-file sink of SSRF BC36 (cloud.providers.metadata.ts:264), reported here when that file is out of scope"
+  },
+  {
+   "file": "src/testimonials/testimonials.service.ts",
+   "line": 64,
+   "note": "count() returns err.message to the caller: database error text leaks (CWE-209)"
+  }
+ ]
+}

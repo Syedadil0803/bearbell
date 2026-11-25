@@ -1,0 +1,30 @@
+{
+ "note": "Pin ref to the commit you cloned; truth files are only valid for that ref.",
+ "targets": [
+  {
+   "name": "brokencrystals",
+   "repo": "https://github.com/NeuraLegion/brokencrystals",
+   "ref": "1765acfddec1437f4f37c51469eba1b7d9a33ed5",
+   "stack": "NestJS + React",
+   "backend": "src",
+   "why": "NestJS, many documented vulns (JWT, IDOR, SSRF, injection)"
+  },
+  {
+   "name": "vunapi",
+   "repo": "https://github.com/henning410/VuNAPI",
+   "ref": "00e26e455403b41b75a2f97a45be2d22bcbd26dd",
+   "stack": "NestJS",
+   "backend": "jwtauth",
+   "why": "NestJS API built around OWASP API Top 10; vulns switched on by Docker settings"
+  },
+  {
+   "name": "crapi",
+   "repo": "https://github.com/OWASP/crAPI",
+   "ref": null,
+   "stack": "Java, Python, Go (not NestJS)",
+   "backend": null,
+   "why": "business-logic and BOLA cases; tests the tracer without the NestJS inventory"
+  }
+ ],
+ "private": "A real project's past audit with fixes reverted lives outside this repo (truth and results name a client)."
+}

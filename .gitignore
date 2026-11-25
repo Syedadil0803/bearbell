@@ -1,0 +1,3 @@
+bearbell/bench/results/
+bearbell/bench/truth/*-private.json
+__pycache__/

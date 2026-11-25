@@ -1,0 +1,124 @@
+{
+ "target": "vunapi",
+ "ref": "00e26e455403b41b75a2f97a45be2d22bcbd26dd",
+ "scope": "jwtauth",
+ "vulns": [
+  {
+   "id": "VU1",
+   "file": "jwtauth/src/api/login/login.service.ts",
+   "line": 21,
+   "cwe": "CWE-89",
+   "title": "SQL injection: username/password concatenated into raw query",
+   "source": "Vulnerabilities.md: SQL Injection (in /login)",
+   "switch": null
+  },
+  {
+   "id": "VU2",
+   "file": "jwtauth/src/api/cmdinject/cmdinject.controller.ts",
+   "line": 16,
+   "cwe": "CWE-78",
+   "title": "OS command injection: query param cmd passed to child_process.exec",
+   "source": "Vulnerabilities.md: CMD Injection (in /exec); README OS Command Injection",
+   "switch": "DISABLE_CMD_INJECTION=true turns it off"
+  },
+  {
+   "id": "VU3",
+   "file": "jwtauth/src/api/redos/redos.controller.ts",
+   "line": 15,
+   "cwe": "CWE-1333",
+   "title": "ReDoS: catastrophic-backtracking email regex on user input",
+   "source": "Vulnerabilities.md: ReDoS (in /redos); README RegexDoS",
+   "switch": "DISABLE_REDOS=true turns it off"
+  },
+  {
+   "id": "VU4",
+   "file": "jwtauth/src/api/kill/kill.controller.ts",
+   "line": 15,
+   "cwe": "CWE-749",
+   "title": "Endpoint calls process.exit(): remote shutdown of the server",
+   "source": "Vulnerabilities.md: Application not reachable (in /kill); README Unreachable Server",
+   "switch": "DISABLE_KILL_ENDPOINT=true turns it off"
+  },
+  {
+   "id": "VU5",
+   "file": "jwtauth/src/api/resource/resource.service.ts",
+   "line": 25,
+   "cwe": "CWE-841",
+   "title": "Logical-order error: locking an already locked resource throws 500",
+   "source": "Vulnerabilities.md: Logical-Order Error (in /resource/{id}/lock); README",
+   "switch": "DISABLE_LOGICAL_ORDER_ERROR=true turns it off (removes ResourceModule, api.module.ts:8)"
+  },
+  {
+   "id": "VU6",
+   "file": "jwtauth/src/api/persons/persons.controller.ts",
+   "line": 31,
+   "cwe": "CWE-190",
+   "title": "Integer overflow: ParseIntPipe id has no range check, huge id reaches DB and causes 500 (same on DELETE /person/{id}, person.controller.ts:96)",
+   "source": "Vulnerabilities.md: Integer Overflow (in /person/{id})",
+   "switch": null
+  },
+  {
+   "id": "VU7",
+   "file": "jwtauth/src/app.controller.ts",
+   "line": 23,
+   "cwe": "CWE-393",
+   "title": "Wrong status code: /testStatusCodes always throws 403, spec says 200/400",
+   "source": "Vulnerabilities.md: Wrong status code (in /testStatusCodes)",
+   "switch": null
+  }
+ ],
+ "traps": [
+  {
+   "file": "jwtauth/src/api/login/login.service.ts",
+   "line": 15,
+   "note": "Commented-out string-concatenated SQL; dead code, not executed (the live injectable query is line 21)."
+  },
+  {
+   "file": "jwtauth/src/api/persons/persons.controller.ts",
+   "line": 9,
+   "note": "Class-level @UseGuards(LoginGuard) covers both GET /persons and GET /persons/:id; looks like missing auth on the id route but it is guarded."
+  },
+  {
+   "file": "jwtauth/src/app.module.ts",
+   "line": 24,
+   "note": "Throttler (1/s, 8/10s, 50/min) is registered as global APP_GUARD unless DISABLE_RATE_LIMITING=true; default compose has it on, so 'no rate limiting' is wrong by default."
+  },
+  {
+   "file": "jwtauth/src/api/person/person.service.ts",
+   "line": 35,
+   "note": "console.log of user id looks like log injection, but id is a number from ParseIntPipe, so no attacker-controlled string."
+  },
+  {
+   "file": "jwtauth/src/api/login/login.service.ts",
+   "line": 31,
+   "note": "JWT payload contains only sub and username, not the password/email; no credential leak in the token."
+  }
+ ],
+ "not_located": [],
+ "also_real": [
+  {
+   "file": "jwtauth/src/api/login/constants.ts",
+   "line": 2,
+   "cwe": "CWE-798",
+   "note": "hard-coded JWT secret, not in docs"
+  },
+  {
+   "file": "jwtauth/src/api/person/person.controller.ts",
+   "line": 81,
+   "cwe": "CWE-915",
+   "note": "Object.assign of body on PUT, not in docs"
+  },
+  {
+   "file": "jwtauth/src/api/resource/resource.controller.ts",
+   "line": 13,
+   "cwe": "CWE-306",
+   "note": "no guard on /resource, not in docs"
+  },
+  {
+   "file": "jwtauth/src/api/entities/person.entity.ts",
+   "line": 28,
+   "cwe": "CWE-256",
+   "note": "plaintext password, returned in person lists; not in docs"
+  }
+ ]
+}
